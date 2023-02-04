@@ -1,0 +1,19 @@
+﻿# Copy this to /etc/systemd/system/acorle.service
+[Unit]
+Description=iEdon Acorle - A Tiny Microservice Solution
+
+[Service]
+WorkingDirectory=/iedon/acorle
+ExecStartPre=+/usr/bin/rm -f /tmp/acorle.sock
+ExecStart=/usr/bin/dotnet /iedon/acorle/Acorle.dll
+Restart=always
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=acorle
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target

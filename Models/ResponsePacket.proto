@@ -1,0 +1,41 @@
+﻿syntax = "proto3";
+package Acorle.Models;
+
+import "HeaderKVPair.proto";
+
+/* 响应 */
+message ResponsePacket {
+
+    /* 包特征，用于占位及表示是己方协议 */
+    bytes magic = 1;
+
+    enum ResponseCodeType {
+        OK = 0;
+        SERVER_EXCEPTION = 1000;
+        NOT_FOUND = 1001;
+        FORBIDDEN = 1002;
+        BAD_GATEWAY = 1003;
+        BAD_REQUEST = 1004;
+        SERVICE_UNAVAILABLE = 1005;
+        METHOD_NOT_ALLOWED = 1006;
+        INVALID_BODY = 1007;
+        RPC_INVALID_ZONE = 2000;
+        RPC_OPERATION_FAILED = 2001;
+        RPC_REG_LIMIT = 2002;
+        RPC_RESPONSE_ERROR = 2003;
+        RPC_RESPONSE_TIMEDOUT = 2004;
+        RPC_NETWORK_EXCEPTION = 2005;
+        RPC_CONFIG_NOT_FOUND = 2006;
+        SVC_INVALID_ZONE = 3000;
+        SVC_NOT_FOUND_OR_UNAVAILABLE = 3001;
+    }
+
+    /* 响应状态码 */
+    ResponseCodeType code = 2;
+
+    /* 响应头 */
+    repeated HeaderKVPair headers = 3;
+
+    /* 响应数据 */
+    bytes data = 4;
+}

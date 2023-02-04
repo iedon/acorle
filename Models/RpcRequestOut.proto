@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+package Acorle.Models;
+
+import "HeaderKVPair.proto";
+
+/* 此类是本中心节点向子节点或子节点与子节点业务间调用时发送的请求 */
+message RpcRequestOut {
+
+    /* 包特征，用于占位及表示是己方协议 */
+    bytes magic = 1;
+
+	/* 请求签名 */
+	string signature = 2;
+
+	/* 请求时间戳 */
+	int64 timestamp = 3;
+
+	/* Zone ID */
+	string zone = 4;
+	
+	/* 业务 Key */
+	string key = 5;
+
+	/* 远程用户IP(当为业务间调用时，可选) */
+	string ip = 6;
+	
+	/* 远程用户端口(当为业务间调用时，可选) */
+	int32 port = 7;
+	
+	/* 远程用户请求 HTTP 标头(当为业务间调用时，可选) */
+	repeated HeaderKVPair headers = 8;
+	
+	/* 远程用户请求数据或业务间调用数据 */
+	bytes data = 9;
+}

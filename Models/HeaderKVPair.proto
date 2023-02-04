@@ -1,0 +1,7 @@
+﻿syntax = "proto3";
+package Acorle.Models;
+
+message HeaderKVPair {
+	string key = 1;
+	repeated string values = 2;
+}

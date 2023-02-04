@@ -1,0 +1,24 @@
+﻿syntax = "proto3";
+package Acorle.Models;
+message ServiceProto {
+	/* 子节点业务元素 */
+	message ServiceMessage {
+		/* 子节点业务唯一 Hash (在负载均衡有多个相同 key 的情况下标识唯一性） */
+		string hash = 1;
+		/* 子节点业务标识 Key */
+		string key = 2;
+		/* 子节点友好名称 */
+		string name = 3;
+		/* 子节点所对应的该业务的完整URL */
+		string url = 4;
+		/* 子节点负载均衡权重 */
+		int32 weight = 5;
+		/* 子节点的服务是是否只对同主体的其他子节点开放，如果为 False，则子节点的业务外网可达 */
+		bool isPrivate = 6;
+		/* JS 时间戳(精确到毫秒) 首次注册的时间 */
+		int64 addedTimestamp = 7;
+		/* JS 时间戳(精确到毫秒) 过期时间。如果子节点超过规定的时间(regInterval)没有报告自己存活，即此业务暂时不能使用。 */
+		int64 expireTimestamp = 8;
+	}
+	repeated ServiceMessage services = 1;
+}

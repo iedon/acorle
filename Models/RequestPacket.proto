@@ -1,0 +1,140 @@
+﻿syntax = "proto3";
+package Acorle.Models;
+
+/* 此类是子节点或最终用户向本中心节点发送的请求 */
+message RequestPacket {
+
+    /* 包特征，用于占位及表示是己方协议 */
+    bytes magic = 1;
+
+	/* 服务区域 */
+	string zone = 2;
+
+	/* 动作类型枚举 */
+	enum ActionType {
+
+		/* 最终用户请求业务 */
+		SVC_REQUEST = 0;
+
+		/* 子节点注册业务 */
+        RPC_REGISTER = 1;
+
+		/* 子节点列所有业务 */
+        RPC_LIST = 2;
+
+		/* 子节点查询业务 */
+        RPC_GET = 3;
+
+		/* 子节点调用业务 */
+        RPC_CALL = 4;
+
+		/* 子节点销毁业务 */
+        RPC_DESTROY = 5;
+
+		/* 子节点获取配置 */
+		RPC_CONFIG_GET = 6;
+
+		/* 子节点设置配置 */
+		RPC_CONFIG_SET = 7;
+    }
+
+	/* 请求的动作类型 */
+	ActionType action = 3;
+
+	/* 交互所用到的数据 */
+	bytes data = 4;
+
+	/* 最终用户请求 */
+	message ServiceRequest {
+
+		/* 用户请求的业务键 */
+		string key = 1;
+
+		/* 用户数据 */
+		bytes data = 2;
+	}
+
+	/* 子节点 RPC 请求 */
+	message RpcRequest {
+
+		/* 子节点请求签名 */
+		string signature = 1;
+
+		/* 子节点请求时间戳 */
+		int64 timestamp = 2;
+
+		/* 子节点数据 */
+		bytes data = 3;
+
+		/* 子节点业务调用请求包 */
+		message RpcCallServiceRequest {
+	
+			/* 子节点业务 Key */
+			string key = 1;
+		}
+
+		/* 子节点业务销毁请求包 */
+		message RpcDestroyServiceRequest {
+
+			/* 子节点业务销毁元素 */
+			message DestroyServiceElement {
+				string key = 1;
+				string url = 2;
+			}
+
+			/* 子节点业务销毁元组 */
+			repeated DestroyServiceElement  services = 1;
+		}
+
+		/* 子节点业务信息获取请求包 */
+		message RpcGetServiceRequest {
+	
+			/* 子节点业务 Key */
+			string key = 1;
+		}
+
+		/* 子节点业务注册请求包 */
+		message RpcRegisterServiceRequest {
+
+			/* 子节点业务注册元素 */
+			message RegisterServiceElement {
+				/* 子节点业务 Key */
+				string key = 1;
+
+				/* 子节点的友好名称 */
+				string name = 2;
+
+				/* 子节点服务所在的 URL */
+				string url = 3;
+
+				/* 子节点负载均衡权重 */
+				int32 weight = 4;
+
+				/* 子节点的服务是是否只对同主体的其他子节点开放，如果为 False，则子节点的业务外网可达 */
+				bool is_private = 5;
+			}
+
+			/* 子节点注册的业务元组 */
+			repeated RegisterServiceElement services = 1;
+		}
+
+		/* 子节点获取配置请求包 */
+		message RpcGetConfigRequest {
+	
+			/* 配置 Key */
+			string key = 1;
+			/* (可空) 如果提供 hash，并且 hash 与当前数据库中一致，则返回空，用于轮询检查配置变更的场景 */
+			string hash = 2;
+		}
+
+		/* 子节点设置配置请求包 */
+		message RpcSetConfigRequest {
+	
+			/* 配置 Key */
+			string key = 1;
+
+			/* 配置内容 */
+			string context = 2;
+		}
+	}
+}

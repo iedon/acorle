@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Acorle", "Acorle.csproj", "{226B5FC5-20DC-4233-BE18-67D05EEA71D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{279FDCD9-2D0F-4177-BC97-900EF2151717}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{226B5FC5-20DC-4233-BE18-67D05EEA71D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{226B5FC5-20DC-4233-BE18-67D05EEA71D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{226B5FC5-20DC-4233-BE18-67D05EEA71D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{226B5FC5-20DC-4233-BE18-67D05EEA71D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E71D4997-8353-4886-8FB9-05FF88882087}
+	EndGlobalSection
+EndGlobal

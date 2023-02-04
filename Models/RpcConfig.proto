@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+package Acorle.Models;
+message RpcConfigProto {
+	/* 区域 ID */
+	string zone = 1;
+	/* 配置 Key */
+	string key = 2;
+	/* Context 的哈希值 */
+	string hash = 3;
+	/* 配置正文 */
+	string context = 4;
+	/* 上次修改时间 JS 时间戳 (精确到毫秒) */
+	int64 lastModifiedTimestamp = 5;
+}
